@@ -1,6 +1,8 @@
 //Sonidos
 const sonidoGameOver = new Audio("gameover8bit.mp3")
 const sonidoComida = new Audio("comida8bit.mp3")
+const imagenManzana = new Image()
+imagenManzana.src = "manzana.png"
 
 //Configuración del canvas
 const lienzo = document.querySelector("#gameBoard")
@@ -16,7 +18,6 @@ const colorFondo = "#f4f4f4"
 const tamañoBloque = 25
 const colorSerpiente = "#00cc99"
 const bordeSerpiente = "#333"
-const colorComida = "#cc0000"
 
 let estaJugando = false
 let velocidadX = tamañoBloque
@@ -70,7 +71,7 @@ const cicloJuego = () => {
             cicloJuego()
         }, 75)
     } else {
-        mostrarGameOver()
+        mostrarGameOver1()
     }
 }
 
@@ -87,10 +88,9 @@ const generarComida = () => {
     comidaY = coordenadaAleatoria(0, altoLienzo - tamañoBloque)
 }
 
-const dibujarComida = () => {
-    pincel.fillStyle = colorComida
-    pincel.fillRect(comidaX, comidaY, tamañoBloque, tamañoBloque)
-};
+function dibujarComida() {
+    pincel.drawImage(imagenManzana, comidaX, comidaY, tamañoBloque, tamañoBloque);
+}
 
 const moverSerpiente = () => {
     const cabeza = {
@@ -147,13 +147,13 @@ const cambiarDireccion = (evento) => {
 const verificarColision = () => {
     const cabeza = serpiente[0]
 
-    // Colisión con bordes
+    //Colisión con bordes
     if (cabeza.x < 0 || cabeza.x >= anchoLienzo || cabeza.y < 0 || cabeza.y >= altoLienzo) {
         estaJugando = false
         return
     }
 
-    // Colisión consigo misma
+    //Colisión consigo misma
     for (let i = 1; i < serpiente.length; i++) {
         if (serpiente[i].x === cabeza.x && serpiente[i].y === cabeza.y) {
             estaJugando = false
@@ -162,19 +162,24 @@ const verificarColision = () => {
     }
 }
 
-const mostrarGameOver = () => {
+const mostrarGameOver1 = () => {
     sonidoGameOver.currentTime = 0
-    sonidoGameOver.play();
-    pincel.font = "80px Press Start 2P"
+    sonidoGameOver.play()
+    pincel.font = "20px 'Press Start 2P'"
     pincel.fillStyle = "#222"
     pincel.textAlign = "center"
+    pincel.shadowColor = "#00cc99"
+    pincel.shadowBlur = 10
     pincel.fillText("¡FIN DEL JUEGO!", anchoLienzo / 2, altoLienzo / 2)
+    pincel.shadowBlur = 0;
+    pincel.shadowColor = "transparent";
 }
+
 
 const reiniciarJuego = () => {
     clearTimeout(temporizador)
-    iniciarJuego();
+    iniciarJuego()
 }
 
 //Iniciar todo
-iniciarJuego();
+iniciarJuego()

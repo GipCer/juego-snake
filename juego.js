@@ -12,7 +12,7 @@ const anchoLienzo = lienzo.width
 const altoLienzo = lienzo.height
 const colorFondo = "#f4f4f4"
 
-// 🎮 Configuración del juego
+//Configuración del juego
 const tamañoBloque = 25
 const colorSerpiente = "#00cc99"
 const bordeSerpiente = "#333"
@@ -98,7 +98,7 @@ const moverSerpiente = () => {
         y: serpiente[0].y + velocidadY
     }
 
-    serpiente.unshift(cabeza);
+    serpiente.unshift(cabeza)
 
     if (cabeza.x === comidaX && cabeza.y === comidaY) {
         puntaje++;
@@ -118,8 +118,8 @@ const dibujarSerpiente = () => {
     serpiente.forEach(parte => {
         pincel.fillRect(parte.x, parte.y, tamañoBloque, tamañoBloque)
         pincel.strokeRect(parte.x, parte.y, tamañoBloque, tamañoBloque)
-    });
-};
+    })
+}
 
 const cambiarDireccion = (evento) => {
     const tecla = evento.keyCode
@@ -142,7 +142,7 @@ const cambiarDireccion = (evento) => {
         velocidadX = 0
         velocidadY = tamañoBloque
     }
-};
+}
 
 const verificarColision = () => {
     const cabeza = serpiente[0]
@@ -160,7 +160,7 @@ const verificarColision = () => {
             return
         }
     }
-};
+}
 
 const mostrarGameOver = () => {
     sonidoGameOver.currentTime = 0
@@ -169,12 +169,12 @@ const mostrarGameOver = () => {
     pincel.fillStyle = "#222"
     pincel.textAlign = "center"
     pincel.fillText("¡FIN DEL JUEGO!", anchoLienzo / 2, altoLienzo / 2)
-};
+}
 
 const reiniciarJuego = () => {
     clearTimeout(temporizador)
     iniciarJuego();
-};
+}
 
-// 👾 Iniciar todo
+//Iniciar todo
 iniciarJuego();

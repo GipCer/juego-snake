@@ -3,54 +3,33 @@ const sonidoGameOver = new Audio("gameover8bit.mp3")
 const sonidoComida = new Audio("comida8bit.mp3")
 const imagenManzana = new Image()
 imagenManzana.src = "manzana.png"
-//sonidoGameOver — Carga el efecto de sonido cuando termina el juego
-//imagenManzana — Crea un objeto de imagen vacío
-//imagenManzana — Crea un objeto de imagen vacío
-//Asigna la fuente para que cargue manzana.png
-
+//Explica que aquí se preparan los sonidos y la manzana como imagen.
 
 // Canvas y elementos del DOM
 const lienzo = document.querySelector("#gameBoard")
 const pincel = lienzo.getContext("2d")
 const textoPuntaje = document.querySelector("#scoreText")
 const botonReiniciar = document.querySelector("#resetBtn")
-//lienzo — Selecciona el <canvas> donde se dibuja el juego
-//pincel — Obtiene el contexto 2D para dibujar en él
-//textoPuntaje — Selecciona el elemento que muestra el puntaje
-//botonReiniciar — Selecciona el botón para reiniciar la partida
-
 
 const anchoLienzo = lienzo.width
 const altoLienzo = lienzo.height
 const colorFondo = "#f4f4f4"
-//anchoLienzo y altoLienzo — Guardan las dimensiones del canvas
-//colorFondo — Define el color de fondo del tablero
-
 
 //Configuración del juego
 const tamañoBloque = 25
 const colorSerpiente = "#00cc99"
 const bordeSerpiente = "#333"
-//tamañoBloque — Tamaño de cada segmento (25 px)
-//colorSerpiente — Color interior de la serpiente
-//bordeSerpiente — Color del contorno de la serpiente
-
 
 let estaJugando = false
 let velocidadX = tamañoBloque
 let velocidadY = 0
 let puntaje = 0
 let temporizador
-//estaJugando — Booleano que indica si el juego está activo
-//velocidadX y velocidadY — Dirección del movimiento; al inicio mueve hacia la derecha
-//puntaje — Guarda la cantidad de manzanas comidas
-//temporizador — Referencia del setTimeout (esperar cierto tiempo antes de ejecutar ) que controla el bucle del juego
-
 
 let comidaX
 let comidaY
-//comidaX y comidaY — Posición en píxeles de la manzana en el canvas
 
+//Aquí se obtienen elementos del DOM, se define el tamaño del canvas, colores, y se inicializa el estado del juego.
 
 let serpiente = [
     { x: tamañoBloque * 4, y: 0 },
@@ -88,8 +67,7 @@ const iniciarJuego = () => {
     dibujarComida()
     cicloJuego()
 };
-//iniciarJuego() — Función que reinicia y comienza la partida
-//Limpia posibles ciclos anteriores, activa el juego, resetea puntaje, reinicia la serpiente, inicia el ciclo
+//reinicia estado, puntaje, serpiente, genera comida y llama al ciclo principal
 
 
 const cicloJuego = () => {
@@ -106,12 +84,7 @@ const cicloJuego = () => {
         mostrarGameOver()
     }
 }
-//Lógica del juego que se ejecuta cada 75ms
-//Limpia el lienzo
-//Dibuja la comida y la serpiente
-//Mueve la serpiente
-//Verifica colisiones
-//Llama recursivamente al ciclo
+//el bucle con setTimeout se actualiza cada 75ms, limpiar, dibujar comida, mover serpiente, dibujar, verificar colisiones
 
 
 const limpiarLienzo = () => {
@@ -154,9 +127,7 @@ const moverSerpiente = () => {
         serpiente.pop()
     }
 }
-//Calcula nueva posición de la cabeza
-//Si come, suma puntaje y reproduce sonido
-//Si no, elimina el último segmento (mantiene tamaño)
+//Explica cómo se añade un nuevo bloque al frente, se elimina el último, y se dibujan todos los bloques.
 
 
 const dibujarSerpiente = () => {

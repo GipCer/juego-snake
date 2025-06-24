@@ -1,4 +1,4 @@
-//Sonidos
+//archivos
 const sonidoGameOver = new Audio("gameover8bit.mp3")
 const sonidoComida = new Audio("comida8bit.mp3")
 const imagenManzana = new Image()
